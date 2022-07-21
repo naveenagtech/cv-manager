@@ -1,6 +1,3 @@
-"""
-    Import the common helper function like find_skills, find_email etc
-"""
 import docx2txt
 from cv_manager.common import find_email, find_name, find_phone, find_skills
 
@@ -15,7 +12,7 @@ def get_text_from_file(file_path):
     return text_content
 
 
-def get_data_from_text_content(text_content):
+def get_data_from_doc(file_path):
     """
         Returns the response in below format
         text_content: Text data extracted from doc file with the help of get_text_from_file function
@@ -28,6 +25,8 @@ def get_data_from_text_content(text_content):
 
         Created by: Naveen Singh
     """
+    text_content = get_text_from_file(file_path)
+
     extracted_data = {
         "name": find_name(text_content),
         "email": find_email(text_content),

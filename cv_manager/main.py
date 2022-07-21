@@ -1,13 +1,16 @@
-## Import All CV processing functions like process_doc, process_img etc
-## Import DB manager function create_profile
+import os
+from cv_manager.process_doc import get_data_from_doc
+UPLOAD_DIR = os.path.join(os.getcwd(), "uploads")
+
+def extract_data_from_file():
+    all_files = os.listdir(UPLOAD_DIR)
+    for file in all_files:
+        if file.lower().endswith(".docx"):
+            data = get_data_from_doc(os.path.join(UPLOAD_DIR, file))
+        elif file.lower().endswith(".pdf"):
+            # call pdf parser
+            pass
+    return data
 
 def process_cv():
-
-    # List all the files from the uploads dir and save it in all_files variable
-
-    # Run a loop and check the file type of each file
-    # based on the file type pass the file_path to the related function to process the data
-    # The function will return dict data which can be passed to the create_profile function to create DB entry
-    # Once processing is done move the file from upload folder to processed folder
-
     print("processing")
