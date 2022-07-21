@@ -1,5 +1,5 @@
 import re
-# Create function to extract skills from CV
+
 SKILLS = [
     'machine learning',
     'data science',
@@ -19,6 +19,10 @@ SKILLS = [
 ]
 
 def find_skills(text):
+    """
+        A function to find Skills from the text using Regular Expression
+        created by: Sumit Saurav
+    """
     skills = []
     for i in skills:
         pattern = re.compile(i)
@@ -26,8 +30,29 @@ def find_skills(text):
             skills.append(i)
     return skills
 
-# Create a function to extract email id from CV
 
-# Create a function to extract Phone number from CV
 
-# Create a function to extract Name from CV
+def find_email(text):
+    """
+        A function to find Email from the text using Regular Expression
+        created by: Sumit Saurav
+    """
+    email_=r'[A-Za-z0-9]+[\._]?[a-z0-9]+[@]\w+[-]?\w+[.]\w{2,3}'
+    email=re.findall(email_,text)
+    return email[0]
+
+
+
+def find_phone(text):
+    """
+        A function to find phone number from the text using Regular Expression
+        created by: Sumit Saurav
+    """
+    phn_ = r'[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}'
+    phone=re.findall(phone,text)
+    return phone[0]
+
+
+def find_name(text):
+    name = "Name"
+    return name
