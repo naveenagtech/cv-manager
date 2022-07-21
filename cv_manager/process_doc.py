@@ -1,20 +1,23 @@
-"""Import the common helper function like find_skills, find_email etc
 """
+    Import the common helper function like find_skills, find_email etc
+"""
+import docx2txt
+from cv_manager.common import find_email, find_name, find_phone, find_skills
+
 
 def get_text_from_file(file_path):
     """
-        Crate a function to extract text from docs file
-        this function will take file path as a param and will return text data
+        This function will take file path as a param and will return text data
         file_path: Path of the doc file
+        Created by: Naveen Singh
     """
-    #Code here
-    pass
+    text_content = docx2txt.process(file_path)
+    return text_content
 
 
-def get_text_from_file(text_content):
+def get_data_from_text_content(text_content):
     """
-        Create a function which will use common helper function to extract data from the text content
-        and return the response in below format
+        Returns the response in below format
         text_content: Text data extracted from doc file with the help of get_text_from_file function
         {
             "name": "Name",
@@ -22,7 +25,13 @@ def get_text_from_file(text_content):
             "phone": "Phone",
             "skills": ["skill1", "skill2"]
         }
-    """
 
-    pass
-    # Code here
+        Created by: Naveen Singh
+    """
+    extracted_data = {
+        "name": find_name(text_content),
+        "email": find_email(text_content),
+        "phone": find_phone(text_content),
+        "skills": find_skills(text_content)
+    }
+    return extracted_data
