@@ -1,7 +1,11 @@
 import sqlite3
 import os
 from cv_manager.process_doc import get_data_from_doc
+<<<<<<< HEAD
 from db_manager.query import CREATE_TABLE_QUERY
+=======
+from cv_manager.process_pdf import get_data_from_pdf
+>>>>>>> e4ef355a7da74d75aa379deff97f1c715f232f00
 UPLOAD_DIR = os.path.join(os.getcwd(), "uploads")
 
 
@@ -25,12 +29,14 @@ def extract_data_from_file():
         if file.lower().endswith(".docx"):
             data = get_data_from_doc(os.path.join(UPLOAD_DIR, file))
         elif file.lower().endswith(".pdf"):
+            # print("File")
             # call pdf parser
-            data = None
+            data = get_data_from_pdf(os.path.join(UPLOAD_DIR, file))
         elif file.lower().endswith(".jpg"):
             # call image parser
             data = None
     return data
 
 def process_cv():
-    print("processing")
+    # print("processing")
+    extract_data_from_file()
