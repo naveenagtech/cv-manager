@@ -9,3 +9,4 @@ openpyxl==3.0.10
 PyPDF2==2.6.0
 Werkzeug==2.1.2
 spacy==3.4.0
+flask_paginate==2022.1.8
