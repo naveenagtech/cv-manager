@@ -1,4 +1,5 @@
 import docx2txt
+import PyPDF2
 from cv_manager.common import find_email, find_name, find_phone, find_skills
 
 
@@ -8,6 +9,7 @@ def get_text_from_file(file_path):
         file_path: Path of the doc file
         Created by: Naveen Singh
     """
+    
     text_content = docx2txt.process(file_path)
     return text_content
 
