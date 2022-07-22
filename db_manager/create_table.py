@@ -1,4 +1,4 @@
-def create_user():
+def create_table():
 
     """
     Create a function to create table using the create table query
