@@ -2,7 +2,6 @@
 Import the common helper function like find_skills, find_email etc
 """
 from cgitb import text
-from csv import reader
 from urllib import response
 import PyPDF2
 import re
@@ -19,11 +18,11 @@ def get_text_from_file(file_path):
     """
     content=open(file_path,"rb")
     object=PyPDF2.PdfReader(content)
-    n_of_p=object.getNumPages()   #n_Of_P=Number of Pages
+    pages=object.getNumPages()
     text=""
-    for pages in range(n_of_p):
-        p=reader.getPage(pages)
-        text_data=p.extracttext()
+    for page in range(pages):
+        page = object.getPage(page)
+        text_data=page.extract_text()
         text+=text_data
     return text
   
