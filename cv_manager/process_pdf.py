@@ -1,6 +1,14 @@
 """
 Import the common helper function like find_skills, find_email etc
 """
+from cgitb import text
+from csv import reader
+from urllib import response
+import PyPDF2
+import re
+import glob
+
+from cv_manager.common import find_email, find_name, find_phone, find_skills
 
 def get_text_from_file(file_path):
     """
@@ -9,12 +17,19 @@ def get_text_from_file(file_path):
         file_path: Path of the doc file
         Created By: Nitesh
     """
+    content=open(file_path,"rb")
+    object=PyPDF2.PdfReader(content)
+    n_of_p=object.getNumPages()   #n_Of_P=Number of Pages
+    text=""
+    for pages in range(n_of_p):
+        p=reader.getPage(pages)
+        text_data=p.extracttext()
+        text+=text_data
+    return text
+  
+    
 
-
-    pass
-
-
-def get_data_from_pdf(text_content):
+def get_data_from_pdf(file_path):
     """
         Create a function which will use common helper function to extract data from the text content
         and return the response in below format
@@ -27,4 +42,13 @@ def get_data_from_pdf(text_content):
         }
         Created By:nitesh.chauhan@ag-technologies.com
     """
-    pass
+    text=get_text_from_file(file_path)
+    response={
+            "name": find_name(text),
+            "email": find_email(text),
+            "phone": find_phone(text),
+            "skills":find_skills(text)
+        }
+    print(response)
+    return response
+
