@@ -7,8 +7,10 @@ def get_text_from_file(file_path):
         Crate a function to extract text from the PDF file
         this function will take file path as a param and will return text data
         file_path: Path of the doc file
+        Created By: Nitesh
     """
-    #Code here
+
+
     pass
 
 
@@ -23,7 +25,6 @@ def get_data_from_pdf(text_content):
             "phone": "Phone",
             "skills": ["skill1", "skill2"]
         }
+        Created By:nitesh.chauhan@ag-technologies.com
     """
-
     pass
-    # Code here
