@@ -1,5 +1,8 @@
+import email
 import sqlite3
+from unicodedata import name
 
+from query import FETCH_USER_QUERY
 
 def fetch_user():
     """
@@ -7,7 +10,10 @@ def fetch_user():
 
     Created By: lopamudra.sahoo@ag-technologies.com
     """
-
-    conn = sqlite3.connect("")
+     
+    conn = sqlite3.connect("<databasename>")
+    cursor = conn.cursor()
+    cursor.execute(FETCH_USER_QUERY + str(id,name,email))
+    conn.commit() 
     conn.close()
     pass
