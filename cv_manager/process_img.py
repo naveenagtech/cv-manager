@@ -1,15 +1,14 @@
 import cv2
 import pytesseract
-
-
 from cv_manager.common import find_email, find_name, find_phone, find_skills
+from cv_manager.converter import pdf_to_img
 
 
-def get_text_from_image(file_path):
+def get_text_from_img(file_path):
     """
         This function will take file path as a param and will return text data
-        file_path: Path of the doc file
-        Created by: Naveen Singh
+        file_path: Path of the PDF file
+        Created by: Sumit Saurav
     """
     
     def ocr_core(img):
@@ -30,13 +29,21 @@ def get_text_from_image(file_path):
 
 
     pytesseract.pytesseract.tesseract_cmd = r'C:\Users\sumit.saurav\AppData\Local\Tesseract-OCR\tesseract.exe'
-    img = cv2.imread('page2.jpg')
-    img = get_grayscale(img)
-    img = thresholding(img)
-    img = remove_noise(img)
 
+    images = pdf_to_img(file_path)
+    text_content = ""
 
-    print(ocr_core(img))
+    for img in images:
+        img.save('page.jpg', 'JPEG')
+
+        # Retrieve text from each Images
+        img = cv2.imread('page.jpg')
+        img = get_grayscale(img)
+        img = thresholding(img)
+        img = remove_noise(img)
+        text_content += ocr_core(img)
+
+    return text_content
 
 
 def get_data_from_doc(file_path):
@@ -50,9 +57,9 @@ def get_data_from_doc(file_path):
             "skills": ["skill1", "skill2"]
         }
 
-        Created by: Naveen Singh
+        Created by: Sumit Saurav
     """
-    text_content = get_text_from_file(file_path)
+    text_content = get_text_from_img(file_path)
 
     extracted_data = {
         "name": find_name(text_content),
@@ -60,4 +67,5 @@ def get_data_from_doc(file_path):
         "phone": find_phone(text_content),
         "skills": find_skills(text_content)
     }
+
     return extracted_data
