@@ -12,7 +12,7 @@ def save_data(data):
     """
     Save the data in DB using the db functions
     """
-    conn = sqlite3.connect(<database_name>)
+    conn = sqlite3.connect("<database_name>")
     cursor = conn.cursor()
     cursor.execute(CREATE_TABLE_QUERY)
     conn.commit()

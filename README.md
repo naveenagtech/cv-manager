@@ -3,3 +3,4 @@
 3. Install the Requirements. ```pip install -r requirements.txt```
 4. Install Spacy Model. ```python -m spacy download en_core_web_lg```
 5. Run the Server. ```python app.py```
+6. ..........
