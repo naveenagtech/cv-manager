@@ -13,6 +13,8 @@ def get_text_from_file(file_path):
     text_content = docx2txt.process(file_path)
     return text_content
 
+    
+
 
 def get_data_from_doc(file_path):
     """
