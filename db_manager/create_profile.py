@@ -7,7 +7,7 @@ def create_user(id, name, email, phone_number,skills,file_path):
         Created By: priyanshi.srivastva@ag-technologies.com
         """
         INSERT_USER_QUERY = """INSERT INTO <Table_Name> (id, name, email, phone_number,skills,file_path) VALUES({},{},{},{},{},{});"""
-        conn = sqlite3.connect(<Database name>)
+        conn = sqlite3.connect("<Database name>")
         cursor = conn.cursor()
         cursor.execute(INSERT_USER_QUERY.format(id, name, email, phone_number,skills,file_path))
         conn.commit()
