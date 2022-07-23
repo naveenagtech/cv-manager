@@ -1,11 +1,8 @@
 import sqlite3
 import os
 from cv_manager.process_doc import get_data_from_doc
-<<<<<<< HEAD
 from db_manager.query import CREATE_TABLE_QUERY
-=======
 from cv_manager.process_pdf import get_data_from_pdf
->>>>>>> e4ef355a7da74d75aa379deff97f1c715f232f00
 UPLOAD_DIR = os.path.join(os.getcwd(), "uploads")
 
 
