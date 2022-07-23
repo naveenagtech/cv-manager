@@ -16,4 +16,3 @@ def fetch_user():
     cursor.execute(FETCH_USER_QUERY + str(id,name,email))
     conn.commit() 
     conn.close()
-    pass
