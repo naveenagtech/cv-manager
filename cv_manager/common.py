@@ -70,7 +70,7 @@ def find_name(text):
         for entity in data.ents:
             if entity.label_ == "PERSON" and bool(re.search(r"\d", entity.text)) == False:
                 name = entity.text
-
+                return name
         email = find_email(text)
         if email is not None:
             name = email.split("@")[0]
@@ -127,12 +127,11 @@ def find_category(id):
                 skill_mapping['ACCOUNTANT'] += 1
     
     fin_max = max(skill_mapping, key=skill_mapping.get)
-    print(fin_max)
+
     curr.execute("SELECT id from category where name = '{}' limit 1".format(fin_max))
     data = curr.fetchone()
     if len(data) > 0:
         category_id = data[0]
-        print(category_id)
         curr.execute("UPDATE user set category_id = {} where id = {}".format(category_id, id))
         conn.commit()
     conn.close()

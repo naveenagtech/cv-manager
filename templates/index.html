@@ -125,15 +125,23 @@
                   <td>{{ user.name }}</td>
                   <td>{{ user.email }}</td>
                   <td>{{ user.phone_number }}</td>
-                  <td>{{ user.skills[:25] }}</td>
+                  <td>
+                     <span>{{ user.skills[:25] }}</span>
+                     </br>
+                     <center><u><span data-toggle="modal" data-target="#editmodal" onclick='test_func({{ user|tojson }})' style="color: blue; cursor: pointer;">View All</span></u></center>
+                  </td>
                   <td>
                      <button class="btn btn-primary" onclick="window.open('/get-file?path={{user.file_path}}')">
                         <i class="fas fa-download"></i>
                      </button>
                   </td>
                   <td>
-                     <button class="btn btn-primary" data-toggle="modal" data-target="#editmodal"
-                        onclick='test_func({{ user|tojson }})'>
+                     <button
+                        class="btn btn-primary"
+                        data-toggle="modal"
+                        data-target="#editmodal"
+                        onclick='test_func({{ user|tojson }})'
+                     >
                         <i class="fas fa-edit"></i>
                      </button>
                   </td>
