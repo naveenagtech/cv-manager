@@ -71,3 +71,7 @@ SELECT_VALIDATED_QUERY = "SELECT count(id) as completed from user where user_val
 SELECT_NOT_VALIDATED_QUERY = "SELECT count(id) as pending from user where user_validated = False or user_validated IS NULL;"
 
 SELECT_PIE_DATA = "select c.name, count(c.name) as total from user inner join category c where user.category_id = c.id GROUP by c.name;"
+
+INSERT_CATEGORY_QUERY = """
+INSERT INTO category (name) values('%(name)s');
+"""

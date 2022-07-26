@@ -5,7 +5,12 @@ from flask import Flask, render_template, request, redirect, send_from_directory
 from werkzeug.utils import secure_filename
 from cv_manager.main import process_cv
 from flask_paginate import Pagination, get_page_args
-from db_manager.create_table import create_user_table, create_skill_table, create_category_table
+from db_manager.create_table import (
+    create_user_table,
+    create_skill_table,
+    create_category_table,
+    create_categories
+)
 from db_manager.fetch_profile import fetch_user
 from db_manager.delete_profile import delete_user
 from db_manager.update_profile import update_user
@@ -129,6 +134,7 @@ def setup_db():
     create_user_table()
     create_skill_table()
     create_category_table()
+    create_categories()
     print("DB Setup is done")
 
 if __name__ == "__main__":

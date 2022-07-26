@@ -240,8 +240,8 @@
    {% block javascript %}
    <script>
       const ctx = document.getElementById('myChart').getContext('2d');
-      d = {{ pie_data | tojson }}
-      l = {{ pie_label | tojson }}
+      d = {{ pie_data|tojson }}
+      l = {{ pie_label|tojson }}
       data = {
          datasets: [{
             data: d,
