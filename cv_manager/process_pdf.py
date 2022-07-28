@@ -21,6 +21,7 @@ def get_text_from_file(file_path):
             page = object.getPage(page)
             text_data=page.extract_text()
             text+=text_data
+        content.close()
         return text
     except Exception as e:
         print("Error: ", e)
