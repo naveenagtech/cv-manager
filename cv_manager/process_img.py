@@ -1,7 +1,8 @@
 import cv2
 import pytesseract
 from cv_manager.common import find_email, find_name, find_phone, find_skills
-from cv_manager.converter import pdf_to_img
+from datetime import datetime
+# from cv_manager.converter import pdf_to_img
 
 def get_text_from_img(file_path):
     """
@@ -29,23 +30,16 @@ def get_text_from_img(file_path):
 
     pytesseract.pytesseract.tesseract_cmd = r'C:\Users\sumit.saurav\AppData\Local\Tesseract-OCR\tesseract.exe'
 
-    images = pdf_to_img(file_path)
-    text_content = ""
+    # Retrieve text from each Images
+    img = cv2.imread(file_path)
+    img = get_grayscale(img)
+    img = thresholding(img)
+    img = remove_noise(img)
 
-    for img in images:
-        img.save('page.jpg', 'JPEG')
-
-        # Retrieve text from each Images
-        img = cv2.imread('page.jpg')
-        img = get_grayscale(img)
-        img = thresholding(img)
-        img = remove_noise(img)
-        text_content += ocr_core(img)
-
-    return text_content
+    return ocr_core(img)
 
 
-def get_ocr_data(file_path):
+def get_ocr_data(file_path, file_name):
     """
         Returns the response in below format
         text_content: Text data extracted from doc file with the help of get_text_from_file function
@@ -58,13 +52,22 @@ def get_ocr_data(file_path):
 
         Created by: Sumit Saurav
     """
+
     text_content = get_text_from_img(file_path)
 
-    extracted_data = {
+    response = {
         "name": find_name(text_content),
         "email": find_email(text_content),
         "phone": find_phone(text_content),
         "skills": find_skills(text_content)
     }
+    if all([list(response.values())]):
+        response.update({"system_validated": True})
+    else:
+        response.update({"system_validated": False})
+    
+    response.update({
+        "file_path": "/processed/{}/{}".format(datetime.today, file_name)
+    })
 
-    return extracted_data
+    return response
